@@ -2,8 +2,9 @@
 
 - name: Copy zfs-auto-snapshot script
   copy:
+    mode: 0775
     src: zfs-auto-snapshot.sh
-    dest: "{{ zfs_auto_snapshot_path }}/zfs-auto-snapshot.sh"
+    dest: "{{ zfs_auto_snapshot_path }}/zfs-auto-snapshot"
 
 - name: Create /usr/local/share/man/man8/ directory
   file:
