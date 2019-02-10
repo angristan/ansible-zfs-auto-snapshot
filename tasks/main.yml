@@ -1,0 +1,61 @@
+---
+
+- name: Copy zfs-auto-snapshot script
+  copy:
+    src: zfs-auto-snapshot.sh
+    dest: "{{ zfs_auto_snapshot_path }}/zfs-auto-snapshot.sh"
+
+- name: Create /usr/local/share/man/man8/ directory
+  file:
+    path: /usr/local/share/man/man8/
+    state: directory
+
+- name: Copy zfs-auto-snapshot man
+  copy:
+    src: zfs-auto-snapshot.8
+    dest: /usr/local/share/man/man8/zfs-auto-snapshot.8
+
+- name: Add frequent cron
+  cron:
+    name: zfs_auto_snapshot_frequent
+    user: root
+    state: present
+    disabled: "{{ zfs_auto_snapshot_frequent_disabled }}"
+    minute: '*/15'
+    job: "which zfs-auto-snapshot > /dev/null || exit 0 ; zfs-auto-snapshot --quiet --syslog --label=frequent --keep={{ zfs_auto_snapshot_frequent_keep }} //"
+
+- name: Add hourly cron
+  cron:
+    name: zfs_auto_snapshot_hourly
+    user: root
+    state: present
+    disabled: "{{ zfs_auto_snapshot_hourly_disabled }}"
+    special_time: hourly
+    job: "which zfs-auto-snapshot > /dev/null || exit 0 ; zfs-auto-snapshot --quiet --syslog --label=hourly --keep={{ zfs_auto_snapshot_hourly_keep }} //"
+
+- name: Add daily cron
+  cron:
+    name: zfs_auto_snapshot_daily
+    user: root
+    state: present
+    disabled: "{{ zfs_auto_snapshot_daily_disabled }}"
+    special_time: daily
+    job: "which zfs-auto-snapshot > /dev/null || exit 0 ; zfs-auto-snapshot --quiet --syslog --label=daily --keep={{ zfs_auto_snapshot_daily_keep }} //"
+
+- name: Add weekly cron
+  cron:
+    name: zfs_auto_snapshot_weekly
+    user: root
+    state: present
+    disabled: "{{ zfs_auto_snapshot_weekly_disabled }}"
+    special_time: weekly
+    job: "which zfs-auto-snapshot > /dev/null || exit 0 ; zfs-auto-snapshot --quiet --syslog --label=weekly --keep={{ zfs_auto_snapshot_weekly_keep }} //"
+
+- name: Add monthly cron
+  cron:
+    name: zfs_auto_snapshot_monthly
+    user: root
+    state: present
+    disabled: "{{ zfs_auto_snapshot_monthly_disabled }}"
+    special_time: monthly
+    job: "which zfs-auto-snapshot > /dev/null || exit 0 ; zfs-auto-snapshot --quiet --syslog --label=monthly --keep={{ zfs_auto_snapshot_monthly_keep }} //"
