@@ -16,6 +16,8 @@ Each cron has its own retention time.
 
 You can enable/disable crons and tune their retention periods using variables. See `defaults/main.yml`.
 
+## Example playbook
+
 Example:
 
 ```yaml
