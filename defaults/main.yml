@@ -3,11 +3,11 @@
 zfs_auto_snapshot_path: '/usr/local/sbin'
 
 # Cron
-zfs_auto_snapshot_frequent_disabled: false
-zfs_auto_snapshot_hourly_disabled: false
-zfs_auto_snapshot_daily_disabled: false
-zfs_auto_snapshot_weekly_disabled: false
-zfs_auto_snapshot_monthly_disabled: false
+zfs_auto_snapshot_frequent_enabled: true
+zfs_auto_snapshot_hourly_enabled: true
+zfs_auto_snapshot_daily_enabled: true
+zfs_auto_snapshot_weekly_enabled: true
+zfs_auto_snapshot_monthly_enabled: true
 
 # Retention
 zfs_auto_snapshot_frequent_keep: 4
