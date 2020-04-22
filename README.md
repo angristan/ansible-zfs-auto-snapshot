@@ -1,7 +1,5 @@
 # zfs-auto-snapshot Ansible role
 
-[![CircleCI](https://circleci.com/gh/angristan/ansible-zfs-auto-snapshot.svg?style=svg)](https://circleci.com/gh/angristan/ansible-zfs-auto-snapshot)
-
 This is an ansible role for [zfsonlinux/zfs-auto-snapshot](https://github.com/zfsonlinux/zfs-auto-snapshot), the ZFS Automatic Snapshot Service for Linux.
 
 It will copy the zfs-auto-snapshot script and man(8).
